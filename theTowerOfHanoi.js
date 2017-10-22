@@ -1,8 +1,8 @@
-var playing = true; //game will play until this is false
-var moveCount = 0;
+const playing = true; //game will play until this is false
+const moveCount = 0;
 
 //reads numberDisks from what the user enters in inputDiskNumber form
-var numberDisks = $('input[type=text][name=numberDisksEntered]').val();
+const numberDisks = $('input[type=text][name=numberDisksEntered]').val();
 
 /************************************
 //                                  *
@@ -21,10 +21,24 @@ class Disk {
   }
 }
 
+/************************************
+//                                  *
+//      Function Expressions        *
+//                                  *
+//***********************************/
 
-
-
-while (numberDisks < 1) {
-    console.error('You must play with at least 1 disk.');
-    $(inputDiskNumber).on('submit')
+//generates a random color that the disk may use
+const color = function getRandomColor() {
+  let values = "0123456789ABCDEF";
+  let hash = "#";
+  const HEX_DIGITS = 6;
+  for (let i = 0; i < HEX_DIGITS; i += 1) {
+    hash += values[Math.floor(Math.random() * 16)];
   }
+  return hash;
+};
+
+//allows disk dragging functionality for eligible disks
+const drag = function dragDisk() {
+
+};
