@@ -1,3 +1,9 @@
+body {
+  background: black;
+  font: small-caps normal 24px 'Share Tech Mono', monospace;
+  color: yellow;
+}
+
 .topText, .bottomText {
   display: flex;
   align-items: flex-start;
@@ -77,7 +83,7 @@ button, .stopWatch {
 }
 
 .base, .rod {
-  background: #926239;
+  background: #39FF14;
 }
 
 .base {
@@ -95,9 +101,6 @@ button, .stopWatch {
   align-items: center;
 }
 
-.disk {
-
-}
 .site {
 	display: flex;
   flex-direction: column;

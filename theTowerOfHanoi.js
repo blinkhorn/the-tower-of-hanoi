@@ -48,7 +48,7 @@ const addDisks = function initialAddDisks() {
   /* create three disks to append to #tower0's rod. Use
   the i value from this for loop to when creating
   the disk's size in the disk constructor above */
-  for (var i = 0; i < numberDisks; i++) {
+  for (let i = 0; i < numberDisks; i++) {
     let diskVar = `diskHtmlId${i}`;
     let disk = new Disk(i, generateColor());
     $(`<div class='disk' id='${diskVar}'></>`).appendTo('#tower0 .rod');
@@ -68,21 +68,24 @@ const build = function buildTowers() {
 
 //makes the top disk in each tower draggable and gives it a movable class
 const dragTop = function dragTopDisk() {
-  $('.disk').first().draggable({containment: '.playingField', cursor: 'move', stack: '.disk', revert: true});
-  $('.disk').first().addClass('movable');
+  const NUMBER_TOWERS = 3;
+  for (let i = 0; i < NUMBER_TOWERS; i++) {
+    $(`#tower${i} .disk`).first().draggable({containment: '.playingField', cursor: 'move', stack: '.disk', revert: true});
+    $(`#tower${i} .disk`).first().addClass('movable');
+  }
 };
 
 //returns true if disk can be dropped on rod, false if it isn't eligible
 const goodDrop = function goodDiskDrop(rod, disk) {
-  let disks = $(rod).children();
-  return (disks.length === 0) || (disks.css('width') >= rod.css('width'));
+  let $disks = $(rod).children();
+  return ($disks.length === 0) || ($disks.css('width') >= rod.css('width'));
 };
 
 //if disk can be dropped on rod, function allows this; if not, function sends
 //disk back to original tower
 const dropLogic = function diskDropLogic(dropTower, disk) {
   if (goodDrop(dropTower, disk)) {
-    $(disk.detach()).prependTo(dropTower);
+    $(disk).prependTo(dropTower);
     disk.draggable('option', 'revert', false);
   } else {
     disk.draggable('option', 'revert', true);
@@ -99,8 +102,8 @@ const gameOver = function userWinsGame(tower) {
 //finds the tower disk is being dropped on and calls dropLogic to test whether
 //drop is eligible
 const handleDrop = function handleDiskDrop(event, ui) {
-  let diskDropTower = $(this);
-  dropLogic(diskDropTower, ui.draggable);
+  let $diskDropTower = $(this);
+  dropLogic($diskDropTower, ui.draggable);
   return gameOver(event.target);
 };
 
