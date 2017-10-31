@@ -4,6 +4,10 @@ body {
   color: yellow;
 }
 
+header {
+  margin: 10px auto;
+}
+
 .topText, .bottomText {
   display: flex;
   align-items: flex-start;
