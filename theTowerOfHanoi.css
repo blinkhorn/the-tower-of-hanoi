@@ -23,6 +23,11 @@ header {
   min-height: 15vh;
 }
 
+.button {
+  background: yellow;
+  font: small-caps normal 24px 'Share Tech Mono', monospace;
+}
+
 .stats {
   display: flex;
   flex-direction: column;
